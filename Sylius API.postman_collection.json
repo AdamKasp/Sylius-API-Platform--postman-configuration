@@ -1,0 +1,460 @@
+{
+	"info": {
+		"_postman_id": "83600194-f4ee-470a-8841-3bcaa75543b0",
+		"name": "Sylius API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pickup cart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/ld+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/ld+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"tokenValue\": \"{{token}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://master.demo.sylius.com/new-api/orders",
+					"protocol": "https",
+					"host": [
+						"master",
+						"demo",
+						"sylius",
+						"com"
+					],
+					"path": [
+						"new-api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add \"Everyday_white_basic_T_Shirt-variant-0\" to cart",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/ld+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/merge-patch+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"productCode\": \"Everyday_white_basic_T_Shirt\",\n  \"productVariantCode\": \"Everyday_white_basic_T_Shirt-variant-0\",\n  \"quantity\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/items",
+					"protocol": "https",
+					"host": [
+						"master",
+						"demo",
+						"sylius",
+						"com"
+					],
+					"path": [
+						"new-api",
+						"orders",
+						"{{token}}",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addressing page",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/ld+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/merge-patch+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"test@test.com\",\n  \"billingAddress\": {\n     \"firstName\" : \"test\",\n     \"lastName\" : \"test\",\n     \"city\" : \"Lodz\",\n     \"street\" : \"xxx\",\n     \"postcode\" : \"99-434\",\n     \"countryCode\" : \"US\"\n  },\n  \"shippingAddress\": {\n     \"firstName\" : \"test\",\n     \"lastName\" : \"test\",\n     \"city\" : \"Lodz\",\n     \"street\" : \"xxx\",\n     \"postcode\" : \"99-434\",\n     \"countryCode\" : \"US\"\n  }\n\n}"
+				},
+				"url": {
+					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/address",
+					"protocol": "https",
+					"host": [
+						"master",
+						"demo",
+						"sylius",
+						"com"
+					],
+					"path": [
+						"new-api",
+						"orders",
+						"{{token}}",
+						"address"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "shipping method step",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/ld+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/merge-patch+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"shipmentIdentifier\": 0,\n    \"shippingMethod\": \"ups\"\n}"
+				},
+				"url": {
+					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/select-shipping-methods",
+					"protocol": "https",
+					"host": [
+						"master",
+						"demo",
+						"sylius",
+						"com"
+					],
+					"path": [
+						"new-api",
+						"orders",
+						"{{token}}",
+						"select-shipping-methods"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "payment method step",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/ld+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/merge-patch+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"paymentIdentifier\": 0,\n    \"paymentMethod\": \"bank_transfer\"\n}"
+				},
+				"url": {
+					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/select-payment-methods",
+					"protocol": "https",
+					"host": [
+						"master",
+						"demo",
+						"sylius",
+						"com"
+					],
+					"path": [
+						"new-api",
+						"orders",
+						"{{token}}",
+						"select-payment-methods"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "complete checkout",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/ld+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/merge-patch+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"notes\": \"some extra information\"\n}"
+				},
+				"url": {
+					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/complete",
+					"protocol": "https",
+					"host": [
+						"master",
+						"demo",
+						"sylius",
+						"com"
+					],
+					"path": [
+						"new-api",
+						"orders",
+						"{{token}}",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "available payment methods for payment",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/ld+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/merge-patch+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/payments/94384/methods?page=1&itemsPerPage=30",
+					"protocol": "https",
+					"host": [
+						"master",
+						"demo",
+						"sylius",
+						"com"
+					],
+					"path": [
+						"new-api",
+						"orders",
+						"{{token}}",
+						"payments",
+						"94384",
+						"methods"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "itemsPerPage",
+							"value": "30"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "available shipping methods for shipment",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/ld+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/merge-patch+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/shipments/81720/methods?page=1&itemsPerPage=30\n",
+					"protocol": "https",
+					"host": [
+						"master",
+						"demo",
+						"sylius",
+						"com"
+					],
+					"path": [
+						"new-api",
+						"orders",
+						"{{token}}",
+						"shipments",
+						"81720",
+						"methods"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "itemsPerPage",
+							"value": "30\n"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get  order's adjustments",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/ld+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/adjustments?page=1&itemsPerPage=30\n",
+					"protocol": "https",
+					"host": [
+						"master",
+						"demo",
+						"sylius",
+						"com"
+					],
+					"path": [
+						"new-api",
+						"orders",
+						"{{token}}",
+						"adjustments"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "itemsPerPage",
+							"value": "30\n"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get orderItem's adjustments",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/ld+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/items/276118/adjustments?page=1&itemsPerPage=30\n",
+					"protocol": "https",
+					"host": [
+						"master",
+						"demo",
+						"sylius",
+						"com"
+					],
+					"path": [
+						"new-api",
+						"orders",
+						"{{token}}",
+						"items",
+						"276118",
+						"adjustments"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "itemsPerPage",
+							"value": "30\n"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c7c1a697-36a5-4e41-9029-b01725e0fa0d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0654d3e0-2ff7-49dd-a0cd-d5fa918fe011",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "1b4389cb-83df-4188-8cff-19d12849303a",
+			"key": "token",
+			"value": "qwe12334"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
