@@ -6,422 +6,4987 @@
 	},
 	"item": [
 		{
-			"name": "Pickup cart",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/ld+json",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/ld+json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"tokenValue\": \"{{token}}\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://master.demo.sylius.com/new-api/orders",
-					"protocol": "https",
-					"host": [
-						"master",
-						"demo",
-						"sylius",
-						"com"
-					],
-					"path": [
-						"new-api",
-						"orders"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "add \"Everyday_white_basic_T_Shirt-variant-0\" to cart",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/ld+json",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/merge-patch+json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"productCode\": \"Everyday_white_basic_T_Shirt\",\n  \"productVariantCode\": \"Everyday_white_basic_T_Shirt-variant-0\",\n  \"quantity\": 1\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/items",
-					"protocol": "https",
-					"host": [
-						"master",
-						"demo",
-						"sylius",
-						"com"
-					],
-					"path": [
-						"new-api",
-						"orders",
-						"{{token}}",
-						"items"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "addressing page",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/ld+json",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/merge-patch+json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"email\": \"test@test.com\",\n  \"billingAddress\": {\n     \"firstName\" : \"test\",\n     \"lastName\" : \"test\",\n     \"city\" : \"Lodz\",\n     \"street\" : \"xxx\",\n     \"postcode\" : \"99-434\",\n     \"countryCode\" : \"US\"\n  },\n  \"shippingAddress\": {\n     \"firstName\" : \"test\",\n     \"lastName\" : \"test\",\n     \"city\" : \"Lodz\",\n     \"street\" : \"xxx\",\n     \"postcode\" : \"99-434\",\n     \"countryCode\" : \"US\"\n  }\n\n}"
-				},
-				"url": {
-					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/address",
-					"protocol": "https",
-					"host": [
-						"master",
-						"demo",
-						"sylius",
-						"com"
-					],
-					"path": [
-						"new-api",
-						"orders",
-						"{{token}}",
-						"address"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "shipping method step",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/ld+json",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/merge-patch+json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"shipmentIdentifier\": 0,\n    \"shippingMethod\": \"ups\"\n}"
-				},
-				"url": {
-					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/select-shipping-methods",
-					"protocol": "https",
-					"host": [
-						"master",
-						"demo",
-						"sylius",
-						"com"
-					],
-					"path": [
-						"new-api",
-						"orders",
-						"{{token}}",
-						"select-shipping-methods"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "payment method step",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/ld+json",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/merge-patch+json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"paymentIdentifier\": 0,\n    \"paymentMethod\": \"bank_transfer\"\n}"
-				},
-				"url": {
-					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/select-payment-methods",
-					"protocol": "https",
-					"host": [
-						"master",
-						"demo",
-						"sylius",
-						"com"
-					],
-					"path": [
-						"new-api",
-						"orders",
-						"{{token}}",
-						"select-payment-methods"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "complete checkout",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/ld+json",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/merge-patch+json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"notes\": \"some extra information\"\n}"
-				},
-				"url": {
-					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/complete",
-					"protocol": "https",
-					"host": [
-						"master",
-						"demo",
-						"sylius",
-						"com"
-					],
-					"path": [
-						"new-api",
-						"orders",
-						"{{token}}",
-						"complete"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "available payment methods for payment",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/ld+json",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/merge-patch+json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/payments/94384/methods?page=1&itemsPerPage=30",
-					"protocol": "https",
-					"host": [
-						"master",
-						"demo",
-						"sylius",
-						"com"
-					],
-					"path": [
-						"new-api",
-						"orders",
-						"{{token}}",
-						"payments",
-						"94384",
-						"methods"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "1"
+			"name": "Adjustments",
+			"item": [
+				{
+					"name": "get adjustment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "itemsPerPage",
-							"value": "30"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "available shipping methods for shipment",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/ld+json",
-						"type": "text"
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/adjustments/ADJUSTMENT_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"adjustments",
+								"ADJUSTMENT_ID"
+							]
+						},
+						"description": "Route only for admin"
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/merge-patch+json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/shipments/81720/methods?page=1&itemsPerPage=30\n",
-					"protocol": "https",
-					"host": [
-						"master",
-						"demo",
-						"sylius",
-						"com"
-					],
-					"path": [
-						"new-api",
-						"orders",
-						"{{token}}",
-						"shipments",
-						"81720",
-						"methods"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "1"
+					"response": []
+				},
+				{
+					"name": "get adjustment for order item !!!",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "itemsPerPage",
-							"value": "30\n"
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": " application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/order-items/ORDER_ITEM_ID/adjustments?page=1&itemsPerPage=30\n",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"order-items",
+								"ORDER_ITEM_ID",
+								"adjustments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30\n"
+								}
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "get orderItem's adjustments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/items/ORDER_ITEM/adjustments?page=1&itemsPerPage=30\n",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"{{token}}",
+								"items",
+								"ORDER_ITEM",
+								"adjustments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get  order's adjustments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/items/ITEM_ID/adjustments?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"{{token}}",
+								"items",
+								"ITEM_ID",
+								"adjustments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "get  order's adjustments",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/ld+json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/adjustments?page=1&itemsPerPage=30\n",
-					"protocol": "https",
-					"host": [
-						"master",
-						"demo",
-						"sylius",
-						"com"
-					],
-					"path": [
-						"new-api",
-						"orders",
-						"{{token}}",
-						"adjustments"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "1"
+			"name": "Channels",
+			"item": [
+				{
+					"name": "Get Channels",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "itemsPerPage",
-							"value": "30\n"
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/channels?page=1&itemsPerPage=30\n",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"channels"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30\n"
+								}
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Create Channel !!!",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"baseCurrency\": \"string\",\n  \"defaultLocale\": \"string\",\n  \"defaultTaxZone\": \"string\",\n  \"taxCalculationStrategy\": \"string\",\n  \"currencies\": [\n    \"string\"\n  ],\n  \"locales\": [\n    \"string\"\n  ],\n  \"countries\": [\n    \"string\"\n  ],\n  \"themeName\": \"string\",\n  \"contactEmail\": \"string\",\n  \"skippingShippingStepAllowed\": true,\n  \"skippingPaymentStepAllowed\": true,\n  \"accountVerificationRequired\": true,\n  \"menuTaxon\": \"string\",\n  \"code\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"hostname\": \"string\",\n  \"color\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/channels",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"channels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Channel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/channels/CHANNEL_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"channels",
+								"CHANNEL_CODE"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "get orderItem's adjustments",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/ld+json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/items/276118/adjustments?page=1&itemsPerPage=30\n",
-					"protocol": "https",
-					"host": [
-						"master",
-						"demo",
-						"sylius",
-						"com"
-					],
-					"path": [
-						"new-api",
-						"orders",
-						"{{token}}",
-						"items",
-						"276118",
-						"adjustments"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "1"
+			"name": "Administrators",
+			"item": [
+				{
+					"name": "get Administrators",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "itemsPerPage",
-							"value": "30\n"
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/administrators?page=1&itemsPerPage=30\n",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"administrators"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30\n"
+								}
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Add Administrator",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Adam\",\n  \"lastName\": \"Doe\",\n  \"localeCode\": \"en_US\",\n  \"username\": \"adam@sylius.com\",\n  \"plainPassword\": \"sylius\",\n  \"email\": \"adam@sylius.com\",\n  \"enabled\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/administrators",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"administrators"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Administrator",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/administrators/ADMINISTRATOR_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"administrators",
+								"ADMINISTRATOR_ID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Administrator",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"new name\",\n  \"lastName\": \"new last name\",\n  \"localeCode\": \"pl_PL\",\n  \"username\": \"newadam@sylius.com\",\n  \"plainPassword\": \"newsylius\",\n  \"email\": \"newadam@sylius.com\",\n  \"enabled\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/administrators/ADMINISTRATOR_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"administrators",
+								"ADMINISTRATOR_ID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Administrator",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/administrators/ADMINISTRATOR_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"administrators",
+								"ADMINISTRATOR_ID"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4ba868c8-5c3b-4e2a-bdbc-df473180a91e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f88e7314-6b26-4b33-af7a-5f86c32f0735",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Avatar Image ???",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Shop Billing Data",
+			"item": [
+				{
+					"name": "Get Shop billing data for channel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/channels/CHANNEL_CODE/shop-billing-data",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"channels",
+								"CHANNEL_CODE",
+								"shop-billing-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Shop billing data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/shop-billing-datas/BILLING_DATA_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"shop-billing-datas",
+								"BILLING_DATA_ID"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Checkout and cart operation",
+			"item": [
+				{
+					"name": "Pickup cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tokenValue\": \"{{token}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add product/variant to cart",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productCode\": \"Everyday_white_basic_T_Shirt\",\n  \"productVariantCode\": \"Everyday_white_basic_T_Shirt-variant-0\",\n  \"quantity\": 1\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/items",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"{{token}}",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addressing page",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@test.com\",\n  \"billingAddress\": {\n     \"firstName\" : \"test\",\n     \"lastName\" : \"test\",\n     \"city\" : \"Lodz\",\n     \"street\" : \"xxx\",\n     \"postcode\" : \"99-434\",\n     \"countryCode\" : \"US\"\n  },\n  \"shippingAddress\": {\n     \"firstName\" : \"test\",\n     \"lastName\" : \"test\",\n     \"city\" : \"Lodz\",\n     \"street\" : \"xxx\",\n     \"postcode\" : \"99-434\",\n     \"countryCode\" : \"US\"\n  }\n\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/address",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"{{token}}",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "shipping method step",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"shipmentIdentifier\": 0,\n    \"shippingMethod\": \"ups\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/select-shipping-methods",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"{{token}}",
+								"select-shipping-methods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "payment method step",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"paymentIdentifier\": 0,\n    \"paymentMethod\": \"bank_transfer\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/select-payment-methods",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"{{token}}",
+								"select-payment-methods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "complete checkout",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"notes\": \"some extra information\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/complete",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"{{token}}",
+								"complete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change quantity of item in cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": " application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItemId\": \"122\",\n  \"newQuantity\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/change-quantity",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"{{token}}",
+								"change-quantity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove item from cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": " application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItemId\": \"122\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/remove",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"{{token}}",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "873312f3-2b38-4ec3-8d61-a8c6f27681c0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d56e0259-3907-469e-8cb1-743e44b2073a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Country",
+			"item": [
+				{
+					"name": "Get countries",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/countries?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"countries"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create country",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"code\": \"AQ\",\n  \"provinces\": [\n    {\n      \"code\": \"AQ-CP\",\n      \"name\": \"Cold Place\",\n      \"abbreviation\": \"CP\"\n    },\n    {\n      \"code\": \"AQ-VC\",\n      \"name\": \"Very Cold Palce\",\n      \"abbreviation\": \"VCP\"\n    }\n  ],\n  \"enabled\": true\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/countries",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get country",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/countries/US",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"countries",
+								"US"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit country",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"enabled\": false\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/countries/AQ",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"countries",
+								"AQ"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Provinces",
+			"item": [
+				{
+					"name": "Get province for country",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/countries/COUNTRY_CODE/provinces?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"countries",
+								"COUNTRY_CODE",
+								"provinces"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get province",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/provinces/PROVINCE_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"provinces",
+								"PROVINCE_CODE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit province",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"code\": \"NE-WC\",\n  \"name\": \"new name\",\n  \"abbreviation\": \"NM\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/provinces/US-US",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"provinces",
+								"US-US"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "admin user authentication token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"api@example.com\",\n  \"password\": \"sylius-api\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/admin-user-authentication-token",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"admin-user-authentication-token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Currencies",
+			"item": [
+				{
+					"name": "Get Currencies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/currencies?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"currencies"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Currency",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"code\": \"BOB\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/currencies",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"currencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Currency",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/currencies/CURRENCY_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"currencies",
+								"CURRENCY_CODE"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Customer Group",
+			"item": [
+				{
+					"name": "Get Customer groups",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/customer-groups?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"customer-groups"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Customer group",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"code\": \"NEW-GROUP\",\n  \"name\": \"new group\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/customer-groups",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"customer-groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer group",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/customer-groups/CUSTOMER_GROUP_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"customer-groups",
+								"CUSTOMER_GROUP_CODE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update customer group",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"upated name\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/customer-groups/CUSTOMER_GROUP_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"customer-groups",
+								"CUSTOMER_GROUP_CODE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer group",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/customer-groups/CUSTOMER_GROUP_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"customer-groups",
+								"CUSTOMER_GROUP_CODE"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Get customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/customers/CUSTOMER_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"customers",
+								"CUSTOMER_ID"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5a64eac1-84a6-442c-8551-faad2f633009",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e9ad4dbd-775e-4dad-974e-e7d3236e52b7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Exchange Rates",
+			"item": [
+				{
+					"name": "Get Exchange rates",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/exchange-rates?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"exchange-rates"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Exchange Rate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ratio\": \"2\",\n  \"sourceCurrency\": \"/new-api/currencies/AUD\",\n  \"targetCurrency\": \"/new-api/currencies/EUR\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/exchange-rates",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"exchange-rates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Exchange rate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/exchange-rates/EXCHANGE_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"exchange-rates",
+								"EXCHANGE_ID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Exchange rate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ratio\": \"4\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/exchange-rates/2",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"exchange-rates",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete exchange rate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "*/*"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": ""
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/exchange-rates/EXCHANGERATE_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"exchange-rates",
+								"EXCHANGERATE_ID"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Locales",
+			"item": [
+				{
+					"name": "Get Locales",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/locales?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"locales"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Locale",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"code\": \"locale-name\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/locales",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"locales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get locale",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/locales/LOCALE_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"locales",
+								"LOCALE_CODE"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Order item Units !!!",
+			"item": [
+				{
+					"name": "Get order item unit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/order-item-units/ORDER_ITEM_UNIT",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"order-item-units",
+								"ORDER_ITEM_UNIT"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8416e1c5-0918-45cd-87e4-3e0f71ef381d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f7c968c6-80e1-4513-ab5a-80a89ddcb91e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Order Items !!!",
+			"item": [
+				{
+					"name": "Get order item",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": ""
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/order-items/1135",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"order-items",
+								"1135"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get order item from order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/R6CjKCa-LY/items?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"R6CjKCa-LY",
+								"items"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5ebbe4e5-c857-42e8-9ad1-47fd7a9d8e2d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce5efdc3-8d6e-4ef0-845c-b46d836ef1f4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Get Orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/ORDER_TOKEN_VALUE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"ORDER_TOKEN_VALUE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/ORDER_TOKEN_VALUE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"ORDER_TOKEN_VALUE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"value": " application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/ORDER_TOKEN_VALUE/cancel",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"ORDER_TOKEN_VALUE",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Get payments from Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/payments?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"{{token}}",
+								"payments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Payments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/payments?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"payments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/payments/PAYMENT_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"payments",
+								"PAYMENT_ID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Complete Payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": " application/ld+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/payments/PAYMENT_ID/complete",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"payments",
+								"PAYMENT_ID",
+								"complete"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Shipments",
+			"item": [
+				{
+					"name": "Get shipment from Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/ORDER_VALUE_TOKEN/shipments?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"ORDER_VALUE_TOKEN",
+								"shipments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get shipments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/shipments?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"shipments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get shipment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/shipments/SHIPMENT_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"shipments",
+								"SHIPMENT_ID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ship shipment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": " application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tracking\": \"tracking-code\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/shipments/SHIPMENT_ID/ship",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"shipments",
+								"SHIPMENT_ID",
+								"ship"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Payment methods",
+			"item": [
+				{
+					"name": "get available payment methods for payment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/payments/41/methods?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"payments",
+								"41",
+								"methods"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "available payment methods for payment from order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/payments/94384/methods?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"{{token}}",
+								"payments",
+								"94384",
+								"methods"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Shipment Methods",
+			"item": [
+				{
+					"name": "available shipping methods for shipment from order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/orders/{{token}}/shipments/81720/methods?page=1&itemsPerPage=30\n",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"orders",
+								"{{token}}",
+								"shipments",
+								"81720",
+								"methods"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get available shipping methods for shipment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/shipments/SHIPMENT_ID/methods?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"shipments",
+								"SHIPMENT_ID",
+								"methods"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Shipping Methods",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/shipping-methods?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"shipping-methods"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Shipping method",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"zone\": \"/new-api/zones/WORLD\",\n    \"channels\": [\n        \"/new-api/channels/FASHION_WEB\"\n    ],\n    \"code\": \"new-method\",\n    \"position\": 0,\n    \"calculator\": \"flat_rate\",\n    \"configuration\": {\n        \"FASHION_WEB\": {\n            \"amount\": 1000\n        }\n    },\n    \"enabled\": true,\n    \"translations\": {\n        \"de_DE\": {\n            \"name\": \"new method\",\n            \"description\": \"Quia optio saepe repellendus non earum deserunt voluptatem.\",\n            \"locale\": \"de_DE\"\n        },\n        \"en_US\": {\n            \"name\": \"the new method\",\n            \"description\": \"Quia optio saepe repellendus non earum deserunt voluptatem.\",\n            \"locale\": \"en_US\"\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/shipping-methods",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"shipping-methods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Shipping method",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/shipping-methods/SHIPPING_METHOD_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"shipping-methods",
+								"SHIPPING_METHOD_CODE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update shipping method (sth does not work with this body)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"zone\": \"/new-api/zones/WORLD\",\n    \"channels\": [\n        \"/new-api/channels/FASHION_WEB\"\n    ],\n    \"position\": 0,\n    \"calculator\": \"flat_rate\",\n    \"configuration\": {\n        \"FASHION_WEB\": {\n            \"amount\": 1000\n        }\n    },\n    \"enabled\": false,\n    \"translations\": {\n        \"de_DE\": {\n            \"name\": \"new method with new name\",\n            \"description\": \"Quia optio\",\n            \"locale\": \"de_DE\"\n        },\n        \"en_US\": {\n            \"name\": \"the new method with new name\",\n            \"description\": \"Quia optio\",\n            \"locale\": \"en_US\"\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/shipping-methods/ups",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"shipping-methods",
+								"ups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete shipping Method",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/shipping-methods/SHIPPING_METHOD_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"shipping-methods",
+								"SHIPPING_METHOD_CODE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "archive Shipping Method",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/shipping-methods/SHIPPING_METHOD_CODE/archive",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"shipping-methods",
+								"SHIPPING_METHOD_CODE",
+								"archive"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore Shipping Method Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/shipping-methods/SHIPPING_METHOD_CODE/restore",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"shipping-methods",
+								"SHIPPING_METHOD_CODE",
+								"restore"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product association Type translations",
+			"item": [
+				{
+					"name": "Get Product Association type translation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-association-type-translations/PRODUCT_ASSOCIATION_TYPE_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-association-type-translations",
+								"PRODUCT_ASSOCIATION_TYPE_ID"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product Association Types",
+			"item": [
+				{
+					"name": "Get Product Association types",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-association-types?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-association-types"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product Association Type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"code\": \"example-association\",\n  \"translations\": {\n   \"de_DE\": {\n            \"name\": \"example-association\",\n            \"description\": \"Quia optio saepe repellendus non earum deserunt voluptatem.\",\n            \"locale\": \"de_DE\"\n        },\n        \"en_US\": {\n            \"name\": \"the example-association\",\n            \"description\": \"Quia optio saepe repellendus non earum deserunt voluptatem.\",\n            \"locale\": \"en_US\"\n        }\n  }\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-association-types",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-association-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Association type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-association-types/ASSOCIATION_TYPE_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-association-types",
+								"ASSOCIATION_TYPE_CODE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product assocation type (sth does not work with this body)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"translations\": {\n        \"de_DE\": {\n            \"name\": \"new method with new name\",\n            \"description\": \"Quia optio\",\n            \"locale\": \"de_DE\"\n        },\n        \"en_US\": {\n            \"name\": \"the new method with new name\",\n            \"description\": \"Quia optio\",\n            \"locale\": \"en_US\"\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-association-types/ASSOCIATION_TYPE_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-association-types",
+								"ASSOCIATION_TYPE_CODE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Product Association type Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-association-types/ASSOCIATION_TYPE_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-association-types",
+								"ASSOCIATION_TYPE_CODE"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product Images",
+			"item": [
+				{
+					"name": "Get Product Images",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-images?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-images"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-images/PRODUCT_IMAGE_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-images",
+								"PRODUCT_IMAGE_ID"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product Option Translations",
+			"item": [
+				{
+					"name": "Get Product Option Translation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-option-translations/PRODUCT_OPTION_TRANSLATION_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-option-translations",
+								"PRODUCT_OPTION_TRANSLATION_ID"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product Option Value",
+			"item": [
+				{
+					"name": "Get Product option value",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-option-values/PRODUCT_OPTION_VALUE_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-option-values",
+								"PRODUCT_OPTION_VALUE_CODE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product option value from product option",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-options/PRODUCT_OPTION_CODE/values?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-options",
+								"PRODUCT_OPTION_CODE",
+								"values"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product options",
+			"item": [
+				{
+					"name": "Get Product Options",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-options?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-options"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product option",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"code\": \"shape\",\n  \"values\": [\n    {\n      \"code\": \"round\",\n      \"translations\": \n        {\n          \"de_DE\": {\n            \"value\": \"round\",\n            \"description\": \"Quia optio saepe repellendus non earum deserunt voluptatem.\",\n            \"locale\": \"de_DE\"\n            },\n          \"en_EN\": {\n            \"value\": \"round\",\n            \"description\": \"Quia optio\",\n            \"locale\": \"en_EN\"\n            }\n        }\n    }\n  ],\n  \"translations\":\n    {\n      \"de_DE\": {\n        \"name\": \"shape\",\n        \"description\": \"Quia optio saepe repellendus non earum deserunt voluptatem.\",\n        \"locale\": \"de_DE\"\n      },\n      \"en_EN\": {\n        \"name\": \"shape\",\n        \"description\": \"Quia optio\",\n        \"locale\": \"en_EN\"\n      }\n    }\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-options",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-options"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product option",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-options/PRODUCT_OPTION_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-options",
+								"PRODUCT_OPTION_CODE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product Option",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"code\": \"shape\",\n  \"values\": [\n    {\n      \"code\": \"round\",\n      \"translations\": \n        {\n          \"de_DE\": {\n            \"value\": \"round\",\n            \"description\": \"Quia optio saepe repellendus non earum deserunt voluptatem.\",\n            \"locale\": \"de_DE\"\n            },\n          \"en_EN\": {\n            \"value\": \"round\",\n            \"description\": \"Quia optio\",\n            \"locale\": \"en_EN\"\n            }\n        }\n    }\n  ],\n  \"translations\":\n    {\n      \"de_DE\": {\n        \"name\": \"shape\",\n        \"description\": \"Quia optio saepe repellendus non earum deserunt voluptatem.\",\n        \"locale\": \"de_DE\"\n      },\n      \"en_EN\": {\n        \"name\": \"shape\",\n        \"description\": \"Quia optio\",\n        \"locale\": \"en_EN\"\n      }\n    }\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-options",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-options"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product Reviews",
+			"item": [
+				{
+					"name": "Get Product Reviews",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-reviews?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-reviews"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-reviews/PRODUCT_REVIEW_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-reviews",
+								"PRODUCT_REVIEW_ID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-reviews/PRODUCT_REVIEW_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-reviews",
+								"PRODUCT_REVIEW_ID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Product review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"string\",\n  \"rating\": 0,\n  \"comment\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-reviews/PRODUCT_REVIEW_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-reviews",
+								"PRODUCT_REVIEW_ID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": " application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-reviews/PRODUCT_REVIEW_ID/accept",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-reviews",
+								"PRODUCT_REVIEW_ID",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reject review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": " application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-reviews/PRODUCT_REVIEW_ID/reject",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-reviews",
+								"PRODUCT_REVIEW_ID",
+								"reject"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product taxons",
+			"item": [
+				{
+					"name": "Get Product taxons",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-taxons?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-taxons"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Taxon",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-taxons/PRODUCT_TAXON_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-taxons",
+								"PRODUCT_TAXON_ID"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product Translations",
+			"item": [
+				{
+					"name": "Get Product translation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-translations/PRODUCT_TRANSLATION_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-translations",
+								"PRODUCT_TRANSLATION_ID"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product Variant Translations",
+			"item": [
+				{
+					"name": "Get Product Variant translation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-variant-translations/PRODUCT_VARIANT_TRANSLATION_ID",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-variant-translations",
+								"PRODUCT_VARIANT_TRANSLATION_ID"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product Variants",
+			"item": [
+				{
+					"name": "Get Product Variants",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-variants?page=1&itemsPerPage=30",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-variants"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product variant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"version\": 0,\n  \"onHold\": 0,\n  \"onHand\": 0,\n  \"tracked\": true,\n  \"shippingCategory\": \"string\",\n  \"weight\": 0,\n  \"width\": 0,\n  \"height\": 0,\n  \"depth\": 0,\n  \"taxCategory\": \"string\",\n  \"channelPricings\": [\n    {\n      \"channelCode\": \"string\",\n      \"productVariant\": \"string\",\n      \"price\": 0,\n      \"originalPrice\": 0\n    }\n  ],\n  \"channelPricing\": [\n    {\n      \"productVariant\": \"string\",\n      \"price\": 0,\n      \"channelCode\": \"string\",\n      \"originalPrice\": 0\n    }\n  ],\n  \"shippingRequired\": true,\n  \"images\": [\n    \"string\"\n  ],\n  \"image\": [\n    {\n      \"productVariants\": [\n        \"string\"\n      ],\n      \"productVariant\": [\n        {\n          \"name\": \"string\",\n          \"optionValues\": [\n            \"string\"\n          ],\n          \"optionValue\": [\n            {\n              \"code\": \"string\",\n              \"translations\": [\n                {\n                  \"value\": \"string\",\n                  \"translatable\": \"string\",\n                  \"locale\": \"string\"\n                }\n              ]\n            }\n          ],\n          \"product\": \"string\",\n          \"position\": 0,\n          \"translation\": [\n            {\n              \"translatable\": \"string\",\n              \"locale\": \"string\",\n              \"name\": \"string\"\n            }\n          ],\n          \"createdAt\": \"2020-08-26T13:52:12.808Z\",\n          \"updatedAt\": \"2020-08-26T13:52:12.808Z\",\n          \"code\": \"string\",\n          \"enabled\": true,\n          \"translations\": [\n            {\n              \"name\": \"string\",\n              \"translatable\": \"string\",\n              \"locale\": \"string\"\n            }\n          ],\n          \"currentLocale\": \"string\",\n          \"fallbackLocale\": \"string\",\n          \"version\": 0,\n          \"onHold\": 0,\n          \"onHand\": 0,\n          \"tracked\": true,\n          \"shippingCategory\": \"string\",\n          \"weight\": 0,\n          \"width\": 0,\n          \"height\": 0,\n          \"depth\": 0,\n          \"taxCategory\": \"string\",\n          \"channelPricings\": [\n            {\n              \"channelCode\": \"string\",\n              \"productVariant\": \"string\",\n              \"price\": 0,\n              \"originalPrice\": 0\n            }\n          ],\n          \"channelPricing\": [\n            {\n              \"productVariant\": \"string\",\n              \"price\": 0,\n              \"channelCode\": \"string\",\n              \"originalPrice\": 0\n            }\n          ],\n          \"shippingRequired\": true,\n          \"images\": [\n            \"string\"\n          ],\n          \"image\": [\n            null\n          ]\n        }\n      ],\n      \"type\": \"string\",\n      \"path\": \"string\",\n      \"owner\": \"string\"\n    }\n  ],\n  \"code\": \"string\",\n  \"name\": \"string\",\n  \"optionValues\": [\n    \"string\"\n  ],\n  \"optionValue\": [\n    {\n      \"code\": \"string\",\n      \"translations\": [\n        {\n          \"value\": \"string\",\n          \"translatable\": \"string\",\n          \"locale\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"product\": \"string\",\n  \"position\": 0,\n  \"translation\": [\n    {\n      \"translatable\": \"string\",\n      \"locale\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"createdAt\": \"2020-08-26T13:52:12.808Z\",\n  \"updatedAt\": \"2020-08-26T13:52:12.808Z\",\n  \"enabled\": true,\n  \"translations\": [\n    {\n      \"name\": \"string\",\n      \"translatable\": \"string\",\n      \"locale\": \"string\"\n    }\n  ],\n  \"currentLocale\": \"string\",\n  \"fallbackLocale\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-variants",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-variants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Variant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"url": {
+							"raw": "https://master.demo.sylius.com/new-api/product-variants/PRODUCT_VARIANT_CODE",
+							"protocol": "https",
+							"host": [
+								"master",
+								"demo",
+								"sylius",
+								"com"
+							],
+							"path": [
+								"new-api",
+								"product-variants",
+								"PRODUCT_VARIANT_CODE"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"auth": {
@@ -451,9 +5016,14 @@
 	],
 	"variable": [
 		{
-			"id": "1b4389cb-83df-4188-8cff-19d12849303a",
+			"id": "5a0ae968-3218-42ff-a1d6-719ade48030d",
 			"key": "token",
 			"value": "qwe12334"
+		},
+		{
+			"id": "bdfaf81a-2922-46d4-8734-95250ce39adb",
+			"key": "admin_auth_token",
+			"value": ""
 		}
 	],
 	"protocolProfileBehavior": {}
